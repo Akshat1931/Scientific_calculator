@@ -13,16 +13,23 @@ document.addEventListener("DOMContentLoaded", function(){
       const button=buttons[i];
       button.addEventListener('click',function(){
         const value=button.innerText;
-        if (value=="AC"){
-          currentValue="";
-          display.value=currentValue;
+        try{
+            if (value=="AC"){
+                currentValue="";
+                display.value=currentValue;
+              }
+              else if(value == "="){
+                evaluateResult();
+              }
+              else{
+              currentValue+=value;
+              display.value=currentValue;
+              }
         }
-        else if(value == "="){
-          evaluateResult();
-        }
-        else{
-        currentValue+=value;
-        display.value=currentValue;
+        catch (error){
+          console.error(error);
+          currentValue= "ERROR";
+          display.value = currentValue;
         }
       })
     }
